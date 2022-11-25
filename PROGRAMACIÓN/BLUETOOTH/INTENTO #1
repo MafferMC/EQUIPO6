@@ -1,0 +1,29 @@
+#include "BluetoothSerial.h"
+
+BluetoothSerial SerialBT;
+int led=12;
+
+void setup() {
+  Serial.begin(115200);
+  SerialBT.begin("equipo9_esp32");
+  Serial.println("Dispositivo listo para emparejar...");
+
+  pinMode (led, OUTPUT);
+}
+
+void loop(){
+  if (Serial.available()){
+    SerialBT.write(Serial.read());
+  }
+  if(SerialBT.available()){
+    char data_income= SerialBT.read();
+    
+    if (data_income=='1'){
+      digitalWrite(led,1);
+    }else if (data_income=='0'){
+      digitalWrite(led,0);
+      }
+    Serial.write(data_income);
+  }
+  delay(20);
+}

@@ -1,0 +1,277 @@
+#include "BluetoothSerial.h"
+#include <ESP32Servo.h>
+BluetoothSerial SerialBT;
+int servoPin=27;
+int servoPin2=26;
+int pos;
+Servo myservo;
+Servo myservo2;
+void setup() {
+  ESP32PWM::allocateTimer(0);
+  ESP32PWM::allocateTimer(1);
+  ESP32PWM::allocateTimer(2);
+  ESP32PWM::allocateTimer(3);
+  myservo.setPeriodHertz(50);
+  myservo2.setPeriodHertz(50); 
+  Serial.begin(115200);
+  SerialBT.begin("equipo6_esp32");
+  Serial.println("Dispositivo listo para emparejar...");
+  pinMode (servoPin, OUTPUT);
+  myservo.attach(servoPin, 0, 4035);
+  myservo2.attach(servoPin2, 0, 4035);
+  myservo.write(0);
+  myservo2.write(0);
+}
+
+void loop(){
+  if (Serial.available()){
+    SerialBT.write(Serial.read());
+  }
+  if(SerialBT.available()){
+    char data_income= SerialBT.read();
+    
+    if (data_income=='1'){
+      pos=0;
+      for (pos = 0; pos <= 10; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);        
+      } 
+      delay(3000);
+      for (pos = pos; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }      
+      delay(2000);
+      //digitalWrite(servo,1);
+    }else if (data_income=='2'){
+      pos=0;
+      for (pos = 0; pos <= 20; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }      
+      delay(10000);
+      for (pos = 20; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }      
+      }else if (data_income=='3'){
+      pos=0;
+      for (pos = 0; pos <= 30; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 30; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }      
+      }else if(data_income=='4'){
+      pos=0;
+      for (pos = 0; pos <= 40; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 40; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }              
+      }else if(data_income=='5'){
+      pos=0;
+      for (pos = 0; pos <= 50; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }           
+      delay(10000);
+      for (pos = 50; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                   
+      }else if(data_income=='6'){
+      pos=0;
+      for (pos = 0; pos <= 60; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);        
+      }           
+      delay(10000);
+      for (pos = 60; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }             
+      }else if(data_income=='7'){
+      pos=0;
+      for (pos = 0; pos <= 70; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }      
+      delay(10000);
+      for (pos = 70; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='8'){
+      pos=0;
+      for (pos = 0; pos <= 80; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 80; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='9'){
+      pos=0;
+      for (pos = 0; pos <= 90; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 90; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='A'){
+      pos=0;
+      for (pos = 0; pos <= 100; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 100; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='B'){
+      pos=0;
+      for (pos = 0; pos <= 110; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 110; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='C'){
+      pos=0;
+      for (pos = 0; pos <= 120; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 120; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='D'){
+      pos=0;
+      for (pos = 0; pos <= 130; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 130; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='E'){
+      pos=0;
+      for (pos = 0; pos <= 140; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }
+      delay(10000);
+      for (pos = 140; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='F'){
+      pos=0;
+      for (pos = 0; pos <= 150; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }      
+      delay(10000);
+      for (pos = 150; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                  
+      }else if(data_income=='G'){
+      pos=0;
+      for (pos = 0; pos <= 160; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }      
+      delay(10000);
+      for (pos = 160; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                  
+      }else if(data_income=='H'){
+      pos=0;
+      for (pos = 0; pos <= 170; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }      
+      delay(10000);
+      for (pos = 170; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if(data_income=='I'){
+      pos=0;
+      for (pos = 0; pos <= 180; pos += 1) {
+        myservo.write(pos);
+        myservo2.write(pos);
+        delay(15);
+      }      
+      delay(10000);
+      for (pos = 180; pos >= 0; pos -= 1) { 
+        myservo.write(pos); 
+        myservo2.write(pos);
+        delay(15);
+      }                        
+      }else if (data_income=='0'){
+        myservo.write(0);
+        myservo2.write(0);
+        delay(15);
+      }    
+    Serial.write(data_income);
+  }
+  delay(20);
+}
